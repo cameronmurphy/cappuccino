@@ -25,6 +25,8 @@ chown -R apache /var/www
 
 # Set ServerName
 sed -i 's,#ServerName www.example.com:80,ServerName cappuccino:80,g' /etc/httpd/conf/httpd.conf
+# Unset DocumentRoot
+sed -i 's,DocumentRoot "/var/www/html",#DocumentRoot "/var/www/html",g' /etc/httpd/conf/httpd.conf
 
 # Configure VirtualHost
 WEB_CONFIG='<VirtualHost *:80>
