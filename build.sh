@@ -20,6 +20,8 @@ yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum --enablerepo=remi,remi-php72 install -y httpd php php-common php-pgsql
 
 # Create web root
+rmdir /var/www/cgi-bin
+rmdir /var/www/html
 mkdir /var/www/public
 chown -R apache /var/www
 
@@ -27,6 +29,9 @@ chown -R apache /var/www
 sed -i 's,#ServerName www.example.com:80,ServerName cappuccino:80,g' /etc/httpd/conf/httpd.conf
 # Unset DocumentRoot
 sed -i 's,DocumentRoot "/var/www/html",#DocumentRoot "/var/www/html",g' /etc/httpd/conf/httpd.conf
+
+rm /etc/httpd/conf.d/README
+rm /etc/httpd/conf.d/welcome.conf
 
 # Configure VirtualHost
 WEB_CONFIG='<VirtualHost *:80>
