@@ -33,7 +33,13 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-This assumes your web root is `public/`. Add this line to swap to `web/` or something else.
+This assumes your web root is `public/`. Add this within the configure block to use `web/` or something else.
+```ruby
+  config.vm.provision "shell", inline: , inline: <<-'SHELL'
+    sed -i "s,/var/www/public,/var/www/web,g" /etc/httpd/conf.d/000-default.conf
+    systemctl restart httpd.service
+  SHELL
+```
 
 Database
 --------
