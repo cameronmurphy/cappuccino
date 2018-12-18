@@ -1,6 +1,7 @@
 ☕ Cappuccino
 =============
-A simple Vagrant development box. Nothing to do with coffee.
+A simple lightweight Vagrant development box. Nothing to do with coffee. Designed primarily for Symfony and Craft CMS
+development.
 
 Includes
 --------
@@ -10,10 +11,10 @@ Includes
 * PHP 7.2
 * U
 * Composer
-* C
+* CLI tools (wget, git, vim)
 * I
-* N
-* O
+* No bloat.
+* Oh yeah!
 
 Building
 --------
@@ -35,13 +36,20 @@ end
 
 This assumes your web root is `public/`. Add this within the configure block to use `web/` or something else.
 ```ruby
-  config.vm.provision "shell", inline: , inline: <<-'SHELL'
+  config.vm.provision "shell", inline: <<-'SHELL'
     sed -i "s,/var/www/public,/var/www/web,g" /etc/httpd/conf.d/000-default.conf
     systemctl restart httpd.service
+  SHELL
+```
+
+If you need additional PHP extensions install add this within the configure block.
+```ruby
+  config.vm.provision "shell", inline: <<-'SHELL'
+    yum --enablerepo=remi,remi-php72 install -y php-soap
   SHELL
 ```
 
 Database
 --------
 By default, there's a database called `cappuccino`. The vagrant user is a superuser so you can
-simply run `psql` after connecting to the virtual machine with `vagrant ssh`.
+simply run `psql` to connect with ident authentication.
