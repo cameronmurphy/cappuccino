@@ -6,7 +6,7 @@ setenforce 0
 cd /tmp
 
 # CLI tools
-yum install -y wget git vim
+yum install -y wget unzip git vim
 
 # VirtualBox guest additions
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm

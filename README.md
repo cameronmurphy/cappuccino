@@ -11,7 +11,7 @@ Includes
 * PHP 7.2
 * U
 * Composer
-* CLI tools (wget, git, vim)
+* CLI tools (wget, unzip, git, vim)
 * I
 * No bloat.
 * Oh yeah!
