@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# Disable SELinux
-setenforce 0
-
 cd /tmp
+
+# Disable SELinux
+sed -i 's,SELINUX=enforcing,SELINUX=disabled,g' /etc/selinux/config
 
 # CLI tools
 yum install -y wget unzip git vim
