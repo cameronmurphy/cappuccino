@@ -46,6 +46,7 @@ If you need additional PHP extensions install add this within the configure bloc
 ```ruby
   config.vm.provision "shell", inline: <<-'SHELL'
     yum --enablerepo=remi,remi-php72 install -y php-soap
+    systemctl restart httpd.service
   SHELL
 ```
 
