@@ -34,8 +34,8 @@ rmdir /var/www/html
 mkdir /var/www/public
 chown -R apache /var/www
 
-# Give log ownership to vagrant
-chown -R vagrant /var/log/httpd
+# Give log ownership to vagrant and apache
+chown -R vagrant:apache /var/log/httpd
 
 # Set ServerName
 sed -i 's,#ServerName www.example.com:80,ServerName cappuccino:80,g' /etc/httpd/conf/httpd.conf
