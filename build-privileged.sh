@@ -31,14 +31,16 @@ yum --enablerepo=remi,remi-php72 install -y httpd php php-pgsql
 # Symfony 4 PHP extensions
 yum --enablerepo=remi,remi-php72 install -y php-xml php-mbstring php-zip
 
+# Craft 3 PHP extensions
+
 # Create web root
 rmdir /var/www/cgi-bin
 rmdir /var/www/html
 mkdir /var/www/public
 chown -R apache /var/www
 
-# Give log ownership to vagrant and apache
-chown -R vagrant:apache /var/log/httpd
+# Give log ownership to apache
+chown -R apache /var/log/httpd
 
 # Set ServerName
 sed -i 's,#ServerName www.example.com:80,ServerName cappuccino:80,g' /etc/httpd/conf/httpd.conf
