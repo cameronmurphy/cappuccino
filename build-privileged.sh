@@ -32,6 +32,10 @@ yum --enablerepo=remi,remi-php72 install -y httpd php php-pgsql
 yum --enablerepo=remi,remi-php72 install -y php-xml php-mbstring php-zip
 
 # Craft 3 PHP extensions
+yum --enablerepo=remi,remi-php72 install -y php-intl php-imagick
+
+# Increase PHP memory limit to satisfy Craft 3
+sed -i 's,memory_limit = [0-9]\+M,memory_limit = 256M,g' /etc/php.ini
 
 # Create web root
 rmdir /var/www/cgi-bin
@@ -95,8 +99,11 @@ yum install -y postgresql10-server
 
 /usr/pgsql-10/bin/postgresql-10-setup initdb
 
-# Configure Postgres to listen on TCP and allow password autentication
+# Configure Postgres to listen on TCP
 sed -i "s,#listen_addresses = 'localhost',listen_addresses = '*'    ,g" /var/lib/pgsql/10/data/postgresql.conf
+# Disable ident for local connections
+sed -i "s,host    all,#host    all,g" /var/lib/pgsql/10/data/pg_hba.conf
+# Enable password authentication for everything
 echo 'host    all             all             all                     password' >> /var/lib/pgsql/10/data/pg_hba.conf
 
 systemctl start postgresql-10.service
