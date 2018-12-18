@@ -21,6 +21,9 @@ umount /media/VBoxGuestAdditions
 rm VBoxGuestAdditions_${LATEST_STABLE_VB}.iso
 rmdir /media/VBoxGuestAdditions
 
+# Clean up packages required for VirtualBox guest addidtions build
+yum uninstall -y gcc kernel-devel
+
 # PHP and Apache
 yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum --enablerepo=remi,remi-php72 install -y httpd php php-common php-pgsql
