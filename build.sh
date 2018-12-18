@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Disable SELinux
+setenforce 0
+
 cd /tmp
 
 # VirtualBox guest additions
