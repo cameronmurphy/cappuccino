@@ -42,6 +42,7 @@ sed -i 's,#ServerName www.example.com:80,ServerName cappuccino:80,g' /etc/httpd/
 # Unset DocumentRoot
 sed -i 's,DocumentRoot "/var/www/html",#DocumentRoot "/var/www/html",g' /etc/httpd/conf/httpd.conf
 
+# Remove some redundant files
 rm /etc/httpd/conf.d/README
 rm /etc/httpd/conf.d/welcome.conf
 
@@ -95,4 +96,5 @@ systemctl enable postgresql-10.service
 sudo -u postgres createuser vagrant --superuser
 sudo -u vagrant createdb cappuccino
 
+# Clear history
 cat /dev/null > ~/.bash_history && history -c
