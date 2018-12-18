@@ -95,10 +95,15 @@ yum install -y postgresql10-server
 
 /usr/pgsql-10/bin/postgresql-10-setup initdb
 
+# Configure Postgres to listen on TCP and allow password autentication
+sed -i "s,#listen_addresses = 'localhost',listen_addresses = '*'    ,g" /var/lib/pgsql/10/data/postgresql.conf
+echo 'host    all             all             all                     password' >> /var/lib/pgsql/10/data/pg_hba.conf
+
 systemctl start postgresql-10.service
 systemctl enable postgresql-10.service
 
 sudo -u postgres createuser vagrant --superuser
+sudo -u postgres psql postgres -c "ALTER USER vagrant WITH PASSWORD 'vagrant';"
 sudo -u vagrant createdb cappuccino
 
 # Clear history
