@@ -13,7 +13,7 @@ Includes
 * Composer
 * CLI tools (wget, unzip, git, vim)
 * I
-* No bloat.
+* NVM, node, npm
 * Oh yeah!
 
 Building

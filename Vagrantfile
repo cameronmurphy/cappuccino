@@ -10,4 +10,5 @@ Vagrant.configure("2") do |config|
   # Reboot in case kernel was upgraded
   config.vm.provision :reload
   config.vm.provision "shell", path: "build-privileged.sh", keep_color: true
+  config.vm.provision "shell", path: "build-vagrant-usr.sh", privileged: false, keep_color: true
 end
