@@ -28,7 +28,7 @@ Usage
 Basic Vagrantfile example:
 ```ruby
 Vagrant.configure("2") do |config|
-  config.vm.box = "cappuccino"
+  config.vm.box = "camurphy/cappuccino"
   config.vm.network "private_network", type: "dhcp"
   config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777", "fmode=777"]
 end
@@ -83,14 +83,14 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  config.vm.box = "cappuccino"
+  config.vm.box = "camurphy/cappuccino"
   config.vm.network "private_network", type: "dhcp"
   config.vm.hostname = ENV["HOSTNAME"]
   config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777", "fmode=777"]
 end
 ```
-Provided your .env file contained `HOSTNAME=cappuccino.wip`, your `hosts` file will be updated to include a block
-similar to below:
+Provided your .env file contains `HOSTNAME=cappuccino.wip`, your `hosts` file will be updated to include a block similar
+to below:
 ```bash
 ## vagrant-hostmanager-start id: b9cd2b8d-6266-4cdf-b5f1-7ca7289a1b91
 172.28.128.3   cappuccino.wip
