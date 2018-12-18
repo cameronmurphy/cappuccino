@@ -26,7 +26,10 @@ yum remove -y gcc kernel-devel
 
 # PHP and Apache
 yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
-yum --enablerepo=remi,remi-php72 install -y httpd php php-common php-pgsql
+yum --enablerepo=remi,remi-php72 install -y httpd php php-pgsql
+
+# Symfony 4 PHP extensions
+yum --enablerepo=remi,remi-php72 install -y php-xml php-mbstring php-zip
 
 # Create web root
 rmdir /var/www/cgi-bin
