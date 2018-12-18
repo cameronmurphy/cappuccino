@@ -22,7 +22,7 @@ rm VBoxGuestAdditions_${LATEST_STABLE_VB}.iso
 rmdir /media/VBoxGuestAdditions
 
 # Clean up packages required for VirtualBox guest addidtions build
-yum uninstall -y gcc kernel-devel
+yum remove -y gcc kernel-devel
 
 # PHP and Apache
 yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
