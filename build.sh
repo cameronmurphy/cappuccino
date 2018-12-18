@@ -5,9 +5,12 @@ setenforce 0
 
 cd /tmp
 
+# CLI tools
+yum install -y wget git vim
+
 # VirtualBox guest additions
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-yum install -y wget gcc kernel-devel
+yum install -y gcc kernel-devel
 
 LATEST_STABLE_VB=$(curl http://download.virtualbox.org/virtualbox/LATEST-STABLE.TXT)
 wget -q http://download.virtualbox.org/virtualbox/${LATEST_STABLE_VB}/VBoxGuestAdditions_${LATEST_STABLE_VB}.iso
