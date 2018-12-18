@@ -74,8 +74,8 @@ fi
 
 php composer-setup.php --quiet
 rm composer-setup.php
-chown vagrant:vagrant composer
-mv composer.phar /usr/local/bin
+chown vagrant:vagrant composer.phar
+mv composer.phar /usr/local/bin/composer
 
 # PostgreSQL
 rpm -Uvh https://yum.postgresql.org/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
