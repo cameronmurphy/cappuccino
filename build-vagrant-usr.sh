@@ -9,3 +9,6 @@ export NVM_DIR="$HOME/.nvm"
 nvm install --lts
 nvm alias default stable
 npm install npm@latest -g
+
+# Clear history
+cat /dev/null > ~/.bash_history && history -c
