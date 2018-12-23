@@ -8,3 +8,4 @@ export NVM_DIR="$HOME/.nvm"
 
 nvm install --lts
 nvm alias default stable
+npm install npm@latest -g
