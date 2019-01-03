@@ -95,7 +95,7 @@ mv composer.phar /usr/local/bin/composer
 
 # PostgreSQL
 rpm -Uvh https://yum.postgresql.org/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
-yum install -y postgresql10-server
+yum install -y postgresql10-server postgresql10-contrib
 
 /usr/pgsql-10/bin/postgresql-10-setup initdb
 
