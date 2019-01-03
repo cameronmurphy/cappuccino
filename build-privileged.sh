@@ -29,7 +29,7 @@ yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum --enablerepo=remi,remi-php72 install -y httpd php php-pgsql
 
 # Symfony 4 PHP extensions
-yum --enablerepo=remi,remi-php72 install -y php-xml php-mbstring php-zip
+yum --enablerepo=remi,remi-php72 install -y php-posix php-mbstring php-opcache php-pecl-apcu php-xdebug php-xml php-zip
 
 # Craft 3 PHP extensions
 yum --enablerepo=remi,remi-php72 install -y php-intl php-imagick
