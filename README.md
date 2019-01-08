@@ -60,6 +60,7 @@ Name: cappuccino
 User: vagrant
 Pass: vagrant
 ```
+There's also a database called `cappuccino_test` to run your test suite against.
 
 Advanced usage
 --------------

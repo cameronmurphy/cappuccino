@@ -112,6 +112,7 @@ systemctl enable postgresql-10.service
 sudo -u postgres createuser vagrant --superuser
 sudo -u postgres psql postgres -c "ALTER USER vagrant WITH PASSWORD 'vagrant';"
 sudo -u vagrant createdb cappuccino
+sudo -u vagrant createdb cappuccino_test
 
 # Clear history
 cat /dev/null > ~/.bash_history && history -c
