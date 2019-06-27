@@ -1,20 +1,20 @@
 ☕ Cappuccino
 =============
-A simple lightweight Vagrant development box. Nothing to do with coffee. Designed primarily for Symfony and Craft CMS
+A simple lightweight VirtualBox Vagrant development box. Nothing to do with coffee. Designed primarily for Symfony and Craft CMS
 development.
 
-Includes
---------
-* CentOS 7
-* Apache 2.4
-* PostgreSQL 10.8
-* PHP 7.2
-* U
-* Composer
-* CLI tools (wget, unzip, git, vim)
-* I
-* NVM, node, npm
-* Oh yeah!
+Acrostic poem
+-------------
+* **C**entOS 7
+* **A**pache 2.4
+* **P**ostgreSQL 10.8
+* **P**HP 7.2
+* **U**nder 700mb 
+* **C**omposer
+* **C**LI tools (wget, unzip, git, vim)
+* **I** like ice cream
+* **N**VM, node, npm
+* **O**h yeah!
 
 Building
 --------
@@ -22,6 +22,8 @@ Building
 $ vagrant up
 $ vagrant package --output cappuccino.box
 ```
+This box is already available in [Vagrant Cloud](https://app.vagrantup.com/camurphy/boxes/cappuccino) so you won't need to build it
+yourself.
 
 Usage
 -----
