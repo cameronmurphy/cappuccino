@@ -7,7 +7,7 @@ Includes
 --------
 * CentOS 7
 * Apache 2.4
-* PostgreSQL 10.6
+* PostgreSQL 10.8
 * PHP 7.2
 * U
 * Composer
