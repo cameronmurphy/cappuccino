@@ -85,7 +85,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "camurphy/cappuccino"
   config.vm.network "private_network", type: "dhcp"
-  config.vm.hostname = "cappucino.wip"
+  config.vm.hostname = "cappuccino.wip"
   config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777", "fmode=777"]
 end
 ```
