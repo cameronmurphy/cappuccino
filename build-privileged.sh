@@ -32,7 +32,7 @@ yum --enablerepo=remi,remi-php72 install -y httpd php php-pgsql
 yum --enablerepo=remi,remi-php72 install -y php-posix php-mbstring php-opcache php-pecl-apcu php-xml php-zip
 
 # Craft 3 PHP extensions
-yum --enablerepo=remi,remi-php72 install -y php-intl php-imagick
+yum --enablerepo=remi,remi-php72 install -y php-intl php-imagick php-gd
 
 # Increase PHP memory limit to satisfy Craft 3
 sed -i 's,memory_limit = [0-9]\+M,memory_limit = 256M,g' /etc/php.ini
