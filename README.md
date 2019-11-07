@@ -7,13 +7,13 @@ Acrostic poem
 -------------
 * **C**entOS 7
 * **A**pache 2.4
-* **P**ostgreSQL 10.9
+* **P**ostgreSQL 10.10
 * **P**HP 7.2
 * **U**nder 850mb 
 * **C**omposer
 * **C**LI tools (wget, unzip, git, vim)
 * **I** like ice cream
-* **N**VM, node, npm
+* **N**VM, node, npm, yarn
 * **O**h yeah!
 
 Building
