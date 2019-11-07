@@ -10,5 +10,7 @@ nvm install --lts --no-progress
 nvm alias default stable
 npm install npm@latest -g
 
+curl -o- -L https://yarnpkg.com/install.sh | bash
+
 # Clear history
 cat /dev/null > ~/.bash_history && history -c
