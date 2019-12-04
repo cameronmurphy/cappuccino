@@ -9,7 +9,7 @@ Acrostic poem
 * **A**pache 2.4
 * **P**ostgreSQL 10.10
 * **P**HP 7.2
-* **U**nder 850mb 
+* **U**nder 800mb 
 * **C**omposer
 * **C**LI tools (wget, unzip, git, vim)
 * **I** like ice cream
