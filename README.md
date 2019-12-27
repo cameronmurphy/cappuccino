@@ -32,7 +32,7 @@ Basic Vagrantfile example:
 Vagrant.configure("2") do |config|
   config.vm.box = "camurphy/cappuccino"
   config.vm.network "private_network", type: "dhcp"
-  config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777", "fmode=777"]
+  config.vm.synced_folder ".", "/var/www", type: "nfs"
 end
 ```
 
@@ -86,7 +86,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "camurphy/cappuccino"
   config.vm.network "private_network", type: "dhcp"
   config.vm.hostname = "cappuccino.wip"
-  config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777", "fmode=777"]
+  config.vm.synced_folder ".", "/var/www", type: "nfs"
 end
 ```
 When your VM boots, your `hosts` file will be updated to include a block similar to below:
