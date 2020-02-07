@@ -5,10 +5,10 @@ development.
 
 Acrostic poem
 -------------
-* **C**entOS 7
+* **C**entOS 8
 * **A**pache 2.4
-* **P**ostgreSQL 10.10
-* **P**HP 7.2
+* **P**ostgreSQL 12.1
+* **P**HP 7.4
 * **U**nder 800mb 
 * **C**omposer
 * **C**LI tools (wget, unzip, git, vim)
