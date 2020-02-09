@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash
 
 export NVM_DIR="$HOME/.nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"

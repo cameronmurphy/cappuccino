@@ -6,11 +6,10 @@ cd /tmp
 sed -i 's,SELINUX=enforcing,SELINUX=disabled,g' /etc/selinux/config
 
 # CLI tools
-yum install -y wget unzip git vim
+dnf install -y wget unzip git vim tar
 
-# VirtualBox guest additions
-rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-yum install -y gcc kernel-devel
+# VirtualBox guest additions requirements
+dnf install -y kernel-devel perl gcc elfutils-libelf-devel
 
 LATEST_STABLE_VB=$(curl http://download.virtualbox.org/virtualbox/LATEST-STABLE.TXT)
 wget -q http://download.virtualbox.org/virtualbox/${LATEST_STABLE_VB}/VBoxGuestAdditions_${LATEST_STABLE_VB}.iso
@@ -21,21 +20,26 @@ umount /media/VBoxGuestAdditions
 rm VBoxGuestAdditions_${LATEST_STABLE_VB}.iso
 rmdir /media/VBoxGuestAdditions
 
-# Clean up packages required for VirtualBox guest addidtions build
-yum remove -y gcc kernel-devel
+# Clean up packages required for VirtualBox guest additions build
+dnf remove -y kernel-devel perl gcc elfutils-libelf-devel
+
+## EPEL and Remi's repo
+dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 
 # PHP and Apache
-yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
-yum --enablerepo=remi,remi-php72 install -y httpd php php-pgsql
+dnf module -y enable php:remi-7.4
+dnf install -y httpd php php-pgsql
 
 # Symfony 4 PHP extensions
-yum --enablerepo=remi,remi-php72 install -y php-posix php-mbstring php-opcache php-pecl-apcu php-xml php-zip
+dnf install -y php-posix php-mbstring php-opcache php-pecl-apcu php-xml php-zip
 
 # Craft 3 PHP extensions
-yum --enablerepo=remi,remi-php72 install -y php-intl php-imagick php-gd
+dnf install -y php-intl php-imagick php-gd
 
-# Increase PHP memory limit to satisfy Craft 3
+# Increase PHP memory limit and max execution time to satisfy Craft 3
 sed -i 's,memory_limit = [0-9]\+M,memory_limit = 256M,g' /etc/php.ini
+sed -i "s,max_execution_time = [[:digit:]]*,max_execution_time = 120,g" /etc/php.ini
 
 # Create web root
 rmdir /var/www/cgi-bin
@@ -74,7 +78,6 @@ WEB_CONFIG='<VirtualHost *:80>
 
 echo "${WEB_CONFIG}" > /etc/httpd/conf.d/000-default.conf
 systemctl enable httpd.service
-systemctl start httpd.service
 
 # Composer
 EXPECTED_SIGNATURE="$(wget -q -O - https://composer.github.io/installer.sig)"
@@ -94,20 +97,22 @@ chown vagrant:vagrant composer.phar
 mv composer.phar /usr/local/bin/composer
 
 # PostgreSQL
-rpm -Uvh https://yum.postgresql.org/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
-yum install -y postgresql10-server postgresql10-contrib
+# Disable the built-in PostgreSQL module
+sudo dnf module -y disable postgresql
+dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+dnf install -y postgresql12 postgresql12-server postgresql12-contrib
 
-/usr/pgsql-10/bin/postgresql-10-setup initdb
+/usr/pgsql-12/bin/postgresql-12-setup initdb
 
 # Configure Postgres to listen on TCP
-sed -i "s,#listen_addresses = 'localhost',listen_addresses = '*'    ,g" /var/lib/pgsql/10/data/postgresql.conf
+sed -i "s,#listen_addresses = 'localhost',listen_addresses = '*'    ,g" /var/lib/pgsql/12/data/postgresql.conf
 # Disable ident for local connections
-sed -i "s,host    all,#host    all,g" /var/lib/pgsql/10/data/pg_hba.conf
+sed -i "s,host    all,#host    all,g" /var/lib/pgsql/12/data/pg_hba.conf
 # Enable password authentication for everything
-echo 'host    all             all             all                     password' >> /var/lib/pgsql/10/data/pg_hba.conf
+echo 'host    all             all             all                     password' >> /var/lib/pgsql/12/data/pg_hba.conf
 
-systemctl start postgresql-10.service
-systemctl enable postgresql-10.service
+systemctl enable postgresql-12.service
+systemctl start postgresql-12.service
 
 sudo -u postgres createuser vagrant --superuser
 sudo -u postgres psql postgres -c "ALTER USER vagrant WITH PASSWORD 'vagrant';"

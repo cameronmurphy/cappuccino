@@ -5,15 +5,15 @@ development.
 
 Acrostic poem
 -------------
-* **C**entOS 7
+* **C**entOS 8
 * **A**pache 2.4
-* **P**ostgreSQL 10.10
-* **P**HP 7.2
-* **U**nder 800mb 
+* **P**ostgreSQL 12.1
+* **P**HP 7.4, PHP-FPM
+* **U**nder 900MB 
 * **C**omposer
 * **C**LI tools (wget, unzip, git, vim)
 * **I** like ice cream
-* **N**VM, node, npm, yarn
+* **N**VM, Node.js, npm, Yarn
 * **O**h yeah!
 
 Building
@@ -48,8 +48,8 @@ If you need additional PHP extensions installed, below is an example of how you'
 configure block.
 ```ruby
   config.vm.provision "shell", inline: <<-'SHELL'
-    yum --enablerepo=remi,remi-php72 install -y php-soap
-    systemctl restart httpd.service
+    dnf install -y php-soap
+    systemctl restart php-fpm.service
   SHELL
 ```
 
