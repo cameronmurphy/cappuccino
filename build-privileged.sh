@@ -31,8 +31,11 @@ dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 dnf module -y enable php:remi-7.4
 dnf install -y httpd php php-pgsql
 
-# Symfony 4 PHP extensions
-dnf install -y php-posix php-mbstring php-opcache php-pecl-apcu php-xml php-zip
+# PHP extensions required by both Symfony and Craft
+dnf install -y php-zip
+
+# Symfony PHP extensions
+dnf install -y php-posix php-mbstring php-opcache php-pecl-apcu php-xml
 
 # Craft 3 PHP extensions
 dnf install -y php-intl php-imagick php-gd
