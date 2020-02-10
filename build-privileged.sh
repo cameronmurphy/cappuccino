@@ -98,7 +98,7 @@ mv composer.phar /usr/local/bin/composer
 
 # PostgreSQL
 # Disable the built-in PostgreSQL module
-sudo dnf module -y disable postgresql
+dnf module -y disable postgresql
 dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 dnf install -y postgresql12 postgresql12-server postgresql12-contrib
 
