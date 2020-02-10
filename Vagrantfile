@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "centos/8"
 
-  config.vm.provision "shell", inline: "yum -y update && yum -y upgrade", keep_color: true
+  config.vm.provision "shell", inline: "dnf -y update && dnf -y upgrade", keep_color: true
   # Reboot in case kernel was upgraded
   config.vm.provision :reload
   config.vm.provision "shell", path: "build-privileged.sh", keep_color: true
