@@ -7,7 +7,7 @@ Acrostic poem
 -------------
 * **C**entOS 8
 * **A**pache 2.4
-* **P**ostgreSQL 12.1
+* **P**ostgreSQL 12.2
 * **P**HP 7.4, PHP-FPM
 * **U**nder 1GB
 * **C**omposer
