@@ -28,7 +28,7 @@ dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarc
 dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 
 # PHP and Apache
-dnf module -y enable php:remi-7.4
+dnf module -y enable php:remi-8.0
 dnf install -y httpd php php-pgsql
 
 # PHP extensions required by both Symfony and Craft
