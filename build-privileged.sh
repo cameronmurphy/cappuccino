@@ -31,10 +31,10 @@ dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 dnf module -y enable php:remi-8.0
 dnf install -y httpd php php-pgsql
 
-# PHP extensions required by both Symfony and Craft
+# PHP extensions required by all
 dnf install -y php-zip
 
-# Symfony PHP extensions
+# Symfony, Laravel PHP extensions
 dnf install -y php-posix php-mbstring php-opcache php-pecl-apcu php-xml
 
 # Craft 3 PHP extensions
@@ -103,24 +103,37 @@ mv composer.phar /usr/local/bin/composer
 # Disable the built-in PostgreSQL module
 dnf module -y disable postgresql
 dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-dnf install -y postgresql12 postgresql12-server postgresql12-contrib
+dnf install -y postgresql13 postgresql13-server postgresql13-contrib
 
-/usr/pgsql-12/bin/postgresql-12-setup initdb
+/usr/pgsql-13/bin/postgresql-13-setup initdb
 
 # Configure Postgres to listen on TCP
-sed -i "s,#listen_addresses = 'localhost',listen_addresses = '*'    ,g" /var/lib/pgsql/12/data/postgresql.conf
+sed -i "s,#listen_addresses = 'localhost',listen_addresses = '*'    ,g" /var/lib/pgsql/13/data/postgresql.conf
 # Disable ident for local connections
-sed -i "s,host    all,#host    all,g" /var/lib/pgsql/12/data/pg_hba.conf
+sed -i "s,host    all,#host    all,g" /var/lib/pgsql/13/data/pg_hba.conf
 # Enable password authentication for everything
-echo 'host    all             all             all                     password' >> /var/lib/pgsql/12/data/pg_hba.conf
+echo 'host    all             all             all                     password' >> /var/lib/pgsql/13/data/pg_hba.conf
 
-systemctl enable postgresql-12.service
-systemctl start postgresql-12.service
+systemctl enable postgresql-13.service
+systemctl start postgresql-13.service
 
 sudo -u postgres createuser vagrant --superuser
 sudo -u postgres psql postgres -c "ALTER USER vagrant WITH PASSWORD 'vagrant';"
 sudo -u vagrant createdb cappuccino
 sudo -u vagrant createdb cappuccino_test
+
+# MariaDB
+dnf install mariadb-server -y
+chown -R root:mysql /var/log/mariadb
+
+systemctl enable mariadb.service
+systemctl start mariadb.service
+
+mysqladmin -u root password 'vagrant'
+mysql -u root -pvagrant -e "CREATE DATABASE cappuccino"
+mysql -u root -pvagrant -e "CREATE DATABASE cappuccino_test"
+mysql -u root -pvagrant -e "CREATE USER 'vagrant'@'%' IDENTIFIED BY 'vagrant'";
+mysql -u root -pvagrant -e "GRANT ALL PRIVILEGES ON *.* TO 'vagrant'@'%' WITH GRANT OPTION";
 
 # Clear dnf
 dnf autoremove -y && dnf clean all

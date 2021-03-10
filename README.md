@@ -1,19 +1,19 @@
 ☕ Cappuccino
 =============
-A simple lightweight VirtualBox Vagrant development box. Nothing to do with coffee. Designed primarily for Symfony and Craft CMS development.
+A simple lightweight VirtualBox Vagrant development box. Nothing to do with coffee. Designed primarily for Symfony, Laravel and Craft CMS development.
 
 Acrostic poem
 -------------
 * **C**entOS 8
 * **A**pache 2.4
-* **P**ostgreSQL 12.5
+* **P**ostgreSQL 13.2
 * **P**HP 8, PHP-FPM
 * **U**nder 1GB
-* **C**omposer
+* **C**omposer 2
 * **C**LI tools (wget, unzip, git, vim)
-* **I** like ice cream
+* **I** like ice cream 🍦
 * **N**VM, Node.js, npm, Yarn
-* **O**h yeah!
+* **O**h, also MariaDB 10.3
 
 Building
 --------
@@ -51,8 +51,9 @@ configure block.
   SHELL
 ```
 
-Database
---------
+Databases
+---------
+Postgres
 ```
 Host: 127.0.0.1
 Port: 5432
@@ -60,7 +61,15 @@ Name: cappuccino
 User: vagrant
 Pass: vagrant
 ```
-There's also a database called `cappuccino_test` to run your test suite against.
+MySQL (MariaDB)
+```
+Host: 127.0.0.1
+Port: 3306
+Name: cappuccino
+User: vagrant
+Pass: vagrant
+```
+There's also a database called `cappuccino_test` in each to run your test suite against.
 
 Advanced usage
 --------------
